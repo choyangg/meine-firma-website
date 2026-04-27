@@ -1,84 +1,70 @@
 <script>
 	import { reveal } from '$lib/actions.js';
 
-	let submitted = $state(false);
+	let sent = $state(false);
 
-	function handleSubmit(e) {
+	function submit(e) {
 		e.preventDefault();
-		submitted = true;
+		sent = true;
 	}
 </script>
 
 <svelte:head>
-	<title>Kontakt – WebPro</title>
-	<meta name="description" content="Kostenlose Beratung anfragen – wir melden uns innerhalb von 24 Stunden." />
+	<title>Kontakt – Aura</title>
 </svelte:head>
 
 <div class="page-hero">
 	<div class="container">
+		<span class="eyebrow">Sprechen wir</span>
 		<h1>Kontakt aufnehmen</h1>
 		<p>Erste Beratung kostenlos. Wir melden uns innerhalb von 24 Stunden.</p>
 	</div>
 </div>
 
-<section class="section">
+<section class="section section-black">
 	<div class="container contact-grid">
 
-		<!-- Info -->
 		<div class="contact-info" use:reveal>
-			<h2>Wir freuen uns<br />von Ihnen zu hören.</h2>
-			<p>Erzählen Sie uns von Ihrem Unternehmen und was Sie sich vorstellen. Wir schauen es uns an und melden uns mit einer kostenlosen Einschätzung.</p>
-
-			<div class="info-items">
-				<div class="info-item">
-					<div class="info-icon">✉</div>
-					<div>
-						<span class="info-label">E-Mail</span>
-						<a href="mailto:hallo@webpro.ch">hallo@webpro.ch</a>
-					</div>
+			<h2 class="display info-title">Wir freuen uns<br /><em>von Ihnen zu hören.</em></h2>
+			<p class="info-sub">
+				Erzählen Sie uns von Ihrem Unternehmen und was Sie sich vorstellen.
+				Wir schauen es uns an und melden uns mit einer kostenlosen Einschätzung.
+			</p>
+			<div class="info-list">
+				<div class="info-row">
+					<span class="info-label">E-Mail</span>
+					<a href="mailto:information.auramarketing@gmail.com">information.auramarketing@gmail.com</a>
 				</div>
-				<div class="info-item">
-					<div class="info-icon">✆</div>
-					<div>
-						<span class="info-label">Telefon</span>
-						<a href="tel:+41441234567">+41 44 123 45 67</a>
-					</div>
+				<div class="info-row">
+					<span class="info-label">Telefon</span>
+					<a href="tel:+41767020406">+41 76 702 04 06</a>
 				</div>
-				<div class="info-item">
-					<div class="info-icon">◷</div>
-					<div>
-						<span class="info-label">Erreichbarkeit</span>
-						<span>Mo–Fr, 9:00–18:00 Uhr</span>
-					</div>
+				<div class="info-row">
+					<span class="info-label">Erreichbarkeit</span>
+					<span>Mo–Fr, 9:00–18:00 Uhr</span>
 				</div>
-				<div class="info-item">
-					<div class="info-icon">◉</div>
-					<div>
-						<span class="info-label">Standort</span>
-						<span>Schweiz</span>
-					</div>
+				<div class="info-row">
+					<span class="info-label">Standort</span>
+					<span>Schweiz</span>
 				</div>
 			</div>
-
-			<div class="promise-box">
-				<strong>Unser Versprechen</strong>
+			<div class="promise">
 				<p>Kein Verkaufsdruck. Keine Verpflichtung. Wir hören zuerst zu – und machen erst dann ein Angebot, wenn wir verstehen, was Sie wirklich brauchen.</p>
 			</div>
 		</div>
 
-		<!-- Form -->
-		<div class="form-wrapper" use:reveal={{ delay: 120 }}>
-			{#if submitted}
-				<div class="success-state">
-					<div class="success-icon">✓</div>
-					<h3>Nachricht gesendet!</h3>
-					<p>Vielen Dank. Wir melden uns innerhalb von 24 Stunden bei Ihnen.</p>
+		<div class="form-side" use:reveal={{ delay: 140 }}>
+			{#if sent}
+				<div class="success">
+					<div class="success-mark">✓</div>
+					<h3>Nachricht gesendet.</h3>
+					<p>Wir melden uns innerhalb von 24 Stunden.</p>
 				</div>
 			{:else}
-				<form onsubmit={handleSubmit}>
-					<div class="form-row">
+				<form onsubmit={submit}>
+					<div class="row-2">
 						<div class="field">
-							<label for="name">Ihr Name *</label>
+							<label for="name">Name *</label>
 							<input id="name" type="text" placeholder="Max Mustermann" required />
 						</div>
 						<div class="field">
@@ -87,16 +73,16 @@
 						</div>
 					</div>
 					<div class="field">
-						<label for="email">E-Mail-Adresse *</label>
+						<label for="email">E-Mail *</label>
 						<input id="email" type="email" placeholder="max@muster.ch" required />
 					</div>
 					<div class="field">
-						<label for="tel">Telefonnummer</label>
+						<label for="tel">Telefon</label>
 						<input id="tel" type="tel" placeholder="+41 44 123 45 67" />
 					</div>
 					<div class="field">
-						<label for="leistung">Was benötigen Sie?</label>
-						<select id="leistung">
+						<label for="need">Was benötigen Sie?</label>
+						<select id="need">
 							<option value="" disabled selected>Bitte auswählen...</option>
 							<option>Neue Website erstellen</option>
 							<option>Bestehende Website überarbeiten</option>
@@ -107,12 +93,10 @@
 					</div>
 					<div class="field">
 						<label for="msg">Ihr Anliegen</label>
-						<textarea id="msg" rows="4" placeholder="Erzählen Sie uns kurz, worum es geht..."></textarea>
+						<textarea id="msg" rows="4" placeholder="Kurze Beschreibung Ihres Projekts..."></textarea>
 					</div>
-					<button type="submit" class="btn btn-green btn-lg submit-btn">
-						Anfrage absenden →
-					</button>
-					<p class="form-note">* Pflichtfelder · Ihre Daten werden vertraulich behandelt und nicht weitergegeben.</p>
+					<button type="submit" class="submit-btn">Anfrage senden ↗</button>
+					<p class="form-note">* Pflichtfelder · Ihre Daten werden vertraulich behandelt.</p>
 				</form>
 			{/if}
 		</div>
@@ -123,109 +107,112 @@
 <style>
 	.contact-grid {
 		display: grid;
-		grid-template-columns: 1fr 1.4fr;
-		gap: 6rem;
+		grid-template-columns: 1fr 1.35fr;
+		gap: 7rem;
 		align-items: start;
 	}
 
-	/* Info */
-	.contact-info h2 {
-		font-size: clamp(1.75rem, 3vw, 2.25rem);
-		font-weight: 800;
-		letter-spacing: -0.025em;
-		line-height: 1.2;
+	.info-title {
+		font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+		font-weight: 600;
+		color: #fff;
 		margin-bottom: 1.25rem;
+		line-height: 1.15;
 	}
-	.contact-info > p {
-		font-size: 0.95rem;
-		color: #64748b;
-		line-height: 1.75;
-		margin-bottom: 2.5rem;
-	}
+	.info-title em { font-style: italic; color: rgba(255,255,255,0.88); }
+	.info-sub { font-size: 0.9rem; color: rgba(195,210,225,0.82); line-height: 1.85; margin-bottom: 2.5rem; }
 
-	.info-items { display: flex; flex-direction: column; gap: 1.375rem; margin-bottom: 2.5rem; }
-	.info-item { display: flex; gap: 1rem; align-items: flex-start; }
-	.info-icon {
-		width: 36px;
-		height: 36px;
-		min-width: 36px;
-		background: #f1f5f9;
-		border-radius: 8px;
+	.info-list { display: flex; flex-direction: column; border-top: 1px solid rgba(255,255,255,0.06); margin-bottom: 2.5rem; }
+	.info-row {
 		display: flex;
+		justify-content: space-between;
 		align-items: center;
-		justify-content: center;
-		font-size: 0.9rem;
-		color: #475569;
+		padding: 1.1rem 0;
+		border-bottom: 1px solid rgba(255,255,255,0.06);
+		gap: 1rem;
 	}
-	.info-label { display: block; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #94a3b8; margin-bottom: 0.2rem; }
-	.info-item a, .info-item span { font-size: 0.925rem; color: #1e293b; font-weight: 500; }
-	.info-item a:hover { color: #059669; }
+	.info-label { font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase; color: #c9a96e; flex-shrink: 0; }
+	.info-row a, .info-row span { font-size: 0.875rem; color: rgba(255,255,255,0.78); transition: color 0.2s; }
+	.info-row a:hover { color: #fff; }
 
-	.promise-box {
-		background: #f0fdf4;
-		border: 1px solid #bbf7d0;
-		border-radius: 12px;
-		padding: 1.375rem;
+	.promise {
+		background: rgba(201,169,110,0.05);
+		border: 1px solid rgba(201,169,110,0.15);
+		padding: 1.5rem;
 	}
-	.promise-box strong { display: block; font-size: 0.875rem; color: #065f46; margin-bottom: 0.5rem; }
-	.promise-box p { font-size: 0.85rem; color: #064e3b; line-height: 1.65; }
+	.promise p { font-size: 0.85rem; color: rgba(195,210,225,0.75); line-height: 1.8; font-style: italic; }
 
 	/* Form */
-	.form-wrapper {
-		background: #f8fafc;
-		border: 1px solid #e2e8f0;
-		border-radius: 18px;
-		padding: 2.5rem;
+	.form-side {
+		background: #0e0e14;
+		border: 1px solid rgba(255,255,255,0.06);
+		padding: 3rem;
 	}
-	form { display: flex; flex-direction: column; gap: 1.125rem; }
-	.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-	.field { display: flex; flex-direction: column; gap: 0.4rem; }
-	label { font-size: 0.82rem; font-weight: 600; color: #374151; }
+	form { display: flex; flex-direction: column; gap: 1.25rem; }
+	.row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+	.field { display: flex; flex-direction: column; gap: 0.5rem; }
+	label {
+		font-size: 0.65rem;
+		font-weight: 600;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: #ffffff;
+	}
 	input, select, textarea {
-		padding: 0.8rem 1rem;
-		border: 1.5px solid #e2e8f0;
-		border-radius: 8px;
-		font-size: 0.9rem;
-		background: #fff;
-		color: #111827;
-		transition: border-color 0.15s, box-shadow 0.15s;
+		padding: 0.875rem 1rem;
+		background: rgba(255,255,255,0.06);
+		border: 1px solid rgba(255,255,255,0.28);
+		color: #ffffff;
+		font-size: 0.875rem;
+		font-weight: 300;
 		width: 100%;
+		transition: border-color 0.2s;
 	}
 	input:focus, select:focus, textarea:focus {
 		outline: none;
-		border-color: #059669;
-		box-shadow: 0 0 0 3px rgba(5,150,105,0.1);
+		border-color: rgba(201,169,110,0.7);
 	}
+	input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.4); }
 	textarea { resize: vertical; line-height: 1.6; }
-	.submit-btn { width: 100%; }
-	.form-note { font-size: 0.78rem; color: #94a3b8; line-height: 1.5; }
+	select { appearance: none; cursor: pointer; color: rgba(255,255,255,0.75); }
+	select option { background: #0e0e14; color: #fff; }
+
+	.submit-btn {
+		background: none;
+		border: 1px solid rgba(255,255,255,0.25);
+		color: #fff;
+		padding: 1rem 2rem;
+		font-size: 0.72rem;
+		font-weight: 500;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		cursor: pointer;
+		transition: all 0.3s;
+		align-self: flex-start;
+	}
+	.submit-btn:hover { background: #fff; color: #06060a; border-color: #fff; }
+	.form-note { font-size: 0.75rem; color: rgba(255,255,255,0.55); }
 
 	/* Success */
-	.success-state {
+	.success {
 		text-align: center;
-		padding: 3rem 1rem;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 1rem;
+		padding: 4rem 2rem;
+		display: flex; flex-direction: column; align-items: center; gap: 1.25rem;
 	}
-	.success-icon {
-		width: 64px;
-		height: 64px;
-		background: #d1fae5;
-		color: #059669;
+	.success-mark {
+		width: 56px; height: 56px;
+		border: 1px solid rgba(201,169,110,0.4);
+		color: #c9a96e;
 		border-radius: 50%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-size: 1.5rem;
-		font-weight: 800;
+		display: flex; align-items: center; justify-content: center;
+		font-size: 1.25rem;
 	}
-	.success-state h3 { font-size: 1.4rem; font-weight: 800; }
-	.success-state p { font-size: 0.95rem; color: #64748b; line-height: 1.65; max-width: 340px; }
+	.success h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.5rem; color: #fff; }
+	.success p { font-size: 0.875rem; color: #4a4845; }
 
 	@media (max-width: 900px) {
-		.contact-grid { grid-template-columns: 1fr; gap: 3rem; }
-		.form-row { grid-template-columns: 1fr; }
+		.contact-grid { grid-template-columns: 1fr; gap: 4rem; }
+		.row-2 { grid-template-columns: 1fr; }
+		.form-side { padding: 2rem; }
 	}
 </style>

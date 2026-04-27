@@ -1,94 +1,87 @@
 <footer>
-	<div class="container footer-grid">
+	<div class="top-line"></div>
+	<div class="container footer-inner">
 		<div class="brand">
-			<a href="/" class="logo">Web<span>Pro</span></a>
-			<p>Professionelle Webseiten für Schweizer Unternehmen. Persönlich, pünktlich, zum Festpreis.</p>
+			<a href="/" class="logo">AURA</a>
+			<p>Websites That Work While You Sleep.</p>
 		</div>
-		<div class="col">
-			<h4>Leistungen</h4>
-			<a href="/leistungen">Website-Erstellung</a>
-			<a href="/leistungen">Website-Überarbeitung</a>
-			<a href="/leistungen">Wartung & Pflege</a>
-		</div>
-		<div class="col">
-			<h4>Unternehmen</h4>
-			<a href="/ablauf">Unser Ablauf</a>
-			<a href="/referenzen">Referenzen</a>
-			<a href="/preise">Preise</a>
-			<a href="/kontakt">Kontakt</a>
-		</div>
-		<div class="col">
-			<h4>Kontakt</h4>
-			<a href="mailto:hallo@webpro.ch">hallo@webpro.ch</a>
-			<a href="tel:+41441234567">+41 44 123 45 67</a>
-			<span>Schweiz</span>
+		<div class="cols">
+			<div class="col">
+				<h4>Navigation</h4>
+				<a href="/leistungen">Leistungen</a>
+				<a href="/ablauf">Ablauf</a>
+				<a href="/referenzen">Referenzen</a>
+				<a href="/kontakt">Kontakt</a>
+			</div>
+			<div class="col">
+				<h4>Kontakt</h4>
+				<a href="mailto:information.auramarketing@gmail.com">information.auramarketing@gmail.com</a>
+				<a href="tel:+41767020406">+41 76 702 04 06</a>
+				<span>Schweiz · Mo–Fr 9–18</span>
+			</div>
 		</div>
 	</div>
 	<div class="bottom">
 		<div class="container bottom-inner">
-			<span>© 2026 WebPro · Alle Rechte vorbehalten</span>
+			<span>© 2026 AURA Web Studio. All rights reserved.</span>
 			<div class="legal">
-				<a href="#">Datenschutz</a>
-				<a href="#">Impressum</a>
-				<a href="#">AGB</a>
+				<a href="/datenschutz">Datenschutz</a>
+				<a href="/impressum">Impressum</a>
 			</div>
 		</div>
 	</div>
 </footer>
 
 <style>
-	footer { background: #0c0c0e; color: #64748b; }
-
-	.footer-grid {
-		display: grid;
-		grid-template-columns: 2fr 1fr 1fr 1fr;
-		gap: 3rem;
-		padding: 4rem 0 3rem;
+	footer { background: #06060a; }
+	.top-line { height: 1px; background: rgba(168,216,240,0.12); }
+	.footer-inner {
+		display: flex; justify-content: space-between; align-items: flex-start;
+		gap: 4rem; padding: 5rem 0 4rem; flex-wrap: wrap;
 	}
-
 	.brand .logo {
-		display: block;
-		font-size: 1.3rem;
-		font-weight: 900;
-		color: #fff;
-		letter-spacing: -0.035em;
-		margin-bottom: 1rem;
+		display: block; font-family: 'Playfair Display', Georgia, serif;
+		font-size: 1.5rem; font-weight: 300; font-style: italic;
+		letter-spacing: 0.28em; margin-bottom: 1rem;
+		background: linear-gradient(
+			105deg,
+			#a8d8f0 0%, #a8d8f0 28%,
+			#e8f8ff 44%, #ffffff 50%,
+			#e8f8ff 56%, #a8d8f0 72%, #a8d8f0 100%
+		);
+		background-size: 300% auto;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		animation: logoShimmer 4s ease-in-out infinite;
+		filter: drop-shadow(0 0 12px rgba(168,216,240,0.15));
 	}
-	.brand .logo span { color: #059669; }
-	.brand p { font-size: 0.875rem; color: #475569; line-height: 1.7; max-width: 220px; }
-
-	.col { display: flex; flex-direction: column; gap: 0.6rem; }
+	@keyframes logoShimmer {
+		0%, 58%  { background-position: 0% center; }
+		82%      { background-position: 150% center; }
+		100%     { background-position: 0% center; }
+	}
+	.brand .logo:hover { filter: drop-shadow(0 0 24px rgba(168,216,240,0.4)); }
+	.brand p { font-size: 0.82rem; color: rgba(190,215,235,0.75); line-height: 1.7; }
+	.cols { display: flex; gap: 4rem; }
+	.col { display: flex; flex-direction: column; gap: 0.65rem; }
 	.col h4 {
-		font-size: 0.72rem;
-		font-weight: 700;
-		text-transform: uppercase;
-		letter-spacing: 0.1em;
-		color: #94a3b8;
-		margin-bottom: 0.375rem;
+		font-size: 0.62rem; font-weight: 600; letter-spacing: 0.2em;
+		text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 0.5rem;
 	}
-	.col a, .col span { font-size: 0.875rem; color: #475569; transition: color 0.15s; }
-	.col a:hover { color: #e2e8f0; }
-
-	.bottom { border-top: 1px solid #1e293b; }
+	.col a, .col span { font-size: 0.82rem; color: rgba(255,255,255,0.62); transition: color 0.2s; }
+	.col a:hover { color: #a8d8f0; }
+	.bottom { border-top: 1px solid rgba(255,255,255,0.08); }
 	.bottom-inner {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		padding: 1.25rem 0;
-		font-size: 0.8rem;
-		color: #334155;
+		display: flex; align-items: center; justify-content: space-between;
+		padding: 1.5rem 0; font-size: 0.72rem; color: rgba(255,255,255,0.5);
 	}
-	.legal { display: flex; gap: 1.25rem; }
-	.legal a { color: #334155; transition: color 0.15s; }
-	.legal a:hover { color: #94a3b8; }
-
+	.legal { display: flex; gap: 1.5rem; }
+	.legal a { color: rgba(255,255,255,0.5); transition: color 0.2s; }
+	.legal a:hover { color: rgba(168,216,240,0.85); }
 	@media (max-width: 768px) {
-		.footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
-		.brand { grid-column: 1 / -1; }
-		.brand p { max-width: none; }
-		.bottom-inner { flex-direction: column; gap: 0.75rem; text-align: center; }
-	}
-	@media (max-width: 480px) {
-		.footer-grid { grid-template-columns: 1fr; }
+		.footer-inner { flex-direction: column; gap: 3rem; padding: 4rem 0 3rem; }
+		.cols { gap: 2.5rem; }
+		.bottom-inner { flex-direction: column; gap: 1rem; text-align: center; }
 	}
 </style>

@@ -1,45 +1,41 @@
 <script>
 	import { page } from '$app/stores';
 
+	let scrolled = $state(false);
 	let menuOpen = $state(false);
+
+	$effect(() => {
+		if (typeof window === 'undefined') return;
+		const fn = () => { scrolled = window.scrollY > 60; };
+		window.addEventListener('scroll', fn, { passive: true });
+		fn();
+		return () => window.removeEventListener('scroll', fn);
+	});
 
 	const links = [
 		{ href: '/leistungen', label: 'Leistungen' },
-		{ href: '/ablauf', label: 'Ablauf' },
+		{ href: '/ablauf',     label: 'Ablauf'     },
 		{ href: '/referenzen', label: 'Referenzen' },
-		{ href: '/preise', label: 'Preise' }
 	];
 
-	function close() {
-		menuOpen = false;
-	}
+	function close() { menuOpen = false; }
 </script>
 
-<nav>
+<nav class:scrolled>
 	<div class="container nav-inner">
-		<a href="/" class="logo" onclick={close}>
-			Web<span>Pro</span>
-		</a>
+		<a href="/" class="logo" onclick={close}>AURA</a>
 
 		<div class="links" class:open={menuOpen}>
-			{#each links as link}
-				<a
-					href={link.href}
-					class:active={$page.url.pathname.startsWith(link.href)}
-					onclick={close}
-				>
-					{link.label}
+			{#each links as l}
+				<a href={l.href} class:active={$page.url.pathname.startsWith(l.href)} onclick={close}>
+					{l.label}
 				</a>
 			{/each}
-			<a href="/kontakt" class="btn btn-green cta" onclick={close}>Anfrage stellen</a>
+			<a href="/kontakt" class="nav-cta" onclick={close}>Start Your Project →</a>
 		</div>
 
-		<button
-			class="burger"
-			onclick={() => (menuOpen = !menuOpen)}
-			aria-label="Menü öffnen"
-		>
-			{menuOpen ? '✕' : '☰'}
+		<button class="burger" onclick={() => menuOpen = !menuOpen} aria-label="Menu">
+			<span class:x={menuOpen}></span>
 		</button>
 	</div>
 </nav>
@@ -50,89 +46,88 @@
 
 <style>
 	nav {
-		position: sticky;
-		top: 0;
-		z-index: 200;
-		height: 64px;
-		display: flex;
-		align-items: center;
-		background: rgba(255, 255, 255, 0.97);
-		backdrop-filter: blur(16px);
-		border-bottom: 1px solid #e2e8f0;
+		position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+		transition: background 0.5s ease, padding 0.4s ease, border-color 0.4s ease;
+		padding: 1.75rem 0;
+		border-bottom: 1px solid transparent;
 	}
-
-	.nav-inner {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		height: 100%;
+	nav.scrolled {
+		background: rgba(5,5,10,0.94);
+		backdrop-filter: blur(24px) saturate(160%);
+		padding: 1rem 0;
+		border-bottom-color: rgba(168,216,240,0.1);
 	}
-
+	.nav-inner { display: flex; align-items: center; }
 	.logo {
-		font-size: 1.3rem;
-		font-weight: 900;
-		color: #111827;
-		letter-spacing: -0.035em;
-		flex: 1;
+		font-family: 'Playfair Display', Georgia, serif;
+		font-size: 2rem; font-weight: 300; font-style: italic;
+		letter-spacing: 0.32em; flex: 1;
+		background: linear-gradient(
+			105deg,
+			#a8d8f0 0%, #a8d8f0 28%,
+			#e8f8ff 44%, #ffffff 50%,
+			#e8f8ff 56%, #a8d8f0 72%, #a8d8f0 100%
+		);
+		background-size: 300% auto;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		animation: logoShimmer 4s ease-in-out infinite;
+		filter: drop-shadow(0 0 18px rgba(168,216,240,0.22));
 	}
-	.logo span { color: #059669; }
-
-	.links {
-		display: flex;
-		align-items: center;
-		gap: 0.125rem;
+	@keyframes logoShimmer {
+		0%, 58%  { background-position: 0% center; }
+		82%      { background-position: 150% center; }
+		100%     { background-position: 0% center; }
 	}
-
-	.links a:not(.btn) {
-		padding: 0.5rem 0.875rem;
-		font-size: 0.875rem;
-		font-weight: 500;
-		color: #64748b;
-		border-radius: 8px;
-		transition: color 0.15s, background 0.15s;
+	.logo:hover { filter: drop-shadow(0 0 32px rgba(168,216,240,0.5)); }
+	.links { display: flex; align-items: center; gap: 0.25rem; }
+	.links a:not(.nav-cta) {
+		padding: 0.5rem 0.875rem; font-size: 0.72rem; font-weight: 400;
+		letter-spacing: 0.12em; text-transform: uppercase;
+		color: rgba(168,216,240,0.45); transition: color 0.2s;
 	}
-	.links a:not(.btn):hover { color: #111827; background: #f1f5f9; }
-	.links a.active:not(.btn) { color: #059669; background: #f0fdf4; }
-
-	.cta { margin-left: 0.625rem; padding: 0.6rem 1.1rem; font-size: 0.875rem; }
-
+	.links a:not(.nav-cta):hover { color: #a8d8f0; }
+	.links a.active:not(.nav-cta) { color: #a8d8f0; }
+	.nav-cta {
+		margin-left: 1.25rem; padding: 0.55rem 1.5rem;
+		border: 1px solid rgba(168,216,240,0.28); color: #a8d8f0;
+		font-size: 0.68rem; font-weight: 500; letter-spacing: 0.14em;
+		text-transform: uppercase; transition: all 0.3s; border-radius: 2px;
+	}
+	.nav-cta:hover { background: rgba(168,216,240,0.1); border-color: #a8d8f0; }
 	.burger {
-		display: none;
-		background: none;
-		border: none;
-		cursor: pointer;
-		font-size: 1.25rem;
-		color: #111827;
-		padding: 0.5rem;
-		line-height: 1;
+		display: none; background: none; border: none; cursor: pointer;
+		padding: 0.5rem; flex-direction: column; justify-content: center; gap: 5px;
 	}
-
+	.burger span, .burger span::before, .burger span::after {
+		display: block; width: 22px; height: 1px; background: #a8d8f0;
+		transition: all 0.3s; position: relative;
+	}
+	.burger span::before, .burger span::after { content: ''; position: absolute; }
+	.burger span::before { top: -6px; }
+	.burger span::after { top: 6px; }
+	.burger span.x { background: transparent; }
+	.burger span.x::before { top: 0; transform: rotate(45deg); }
+	.burger span.x::after { top: -2px; transform: rotate(-45deg); }
 	.backdrop {
-		position: fixed;
-		inset: 64px 0 0;
-		background: rgba(0, 0, 0, 0.35);
-		z-index: 190;
+		position: fixed; inset: 0; background: rgba(6,6,8,0.6);
+		z-index: 290; backdrop-filter: blur(4px);
 	}
-
 	@media (max-width: 768px) {
 		.burger { display: flex; }
-
 		.links {
-			display: none;
-			position: fixed;
-			top: 64px;
-			left: 0;
-			right: 0;
-			background: #fff;
-			border-bottom: 1px solid #e2e8f0;
-			flex-direction: column;
-			padding: 1rem 1.5rem 1.25rem;
-			gap: 0.25rem;
-			z-index: 199;
-			align-items: stretch;
+			display: none; position: fixed; top: 0; right: 0; bottom: 0;
+			width: min(300px, 85vw); background: #0a0a0f;
+			border-left: 1px solid rgba(168,216,240,0.08);
+			flex-direction: column; align-items: flex-start;
+			padding: 6rem 2rem 2rem; gap: 0.25rem; z-index: 295;
 		}
 		.links.open { display: flex; }
-		.links a:not(.btn) { padding: 0.75rem 1rem; }
-		.cta { margin-left: 0; margin-top: 0.5rem; }
+		.links a:not(.nav-cta) {
+			padding: 0.875rem 0; font-size: 0.85rem; width: 100%;
+			border-bottom: 1px solid rgba(168,216,240,0.05);
+		}
+		.nav-cta { margin-left: 0; margin-top: 1.5rem; }
 	}
 </style>

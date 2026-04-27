@@ -2,97 +2,54 @@
 	import { reveal } from '$lib/actions.js';
 
 	const projects = [
-		{
-			category: 'Restaurant',
-			title: 'Trattoria Napoli',
-			desc: 'Elegante Restaurant-Website mit Speisekarte, Bildergalerie und Online-Reservierung per Formular.',
-			pages: '6 Seiten'
-		},
-		{
-			category: 'Handwerk',
-			title: 'Schreinerei Huber',
-			desc: 'Professioneller Webauftritt mit Referenzgalerie, Leistungsübersicht und einfachem Anfrage-Formular.',
-			pages: '5 Seiten'
-		},
-		{
-			category: 'Kosmetik',
-			title: 'Beauty Studio Lena',
-			desc: 'Elegante Website mit Behandlungsübersicht, Preisliste und Online-Terminbuchung per Formular.',
-			pages: '4 Seiten'
-		},
-		{
-			category: 'Praxis',
-			title: 'Physiotherapie Weber',
-			desc: 'Vertrauenserweckende Praxis-Website mit Leistungen, Team-Vorstellung und Kontaktformular.',
-			pages: '5 Seiten'
-		},
-		{
-			category: 'Bäckerei',
-			title: 'Bäckerei Berger',
-			desc: 'Herzliche Website mit Produktübersicht, Öffnungszeiten und Standort-Karte. Jetzt deutlich mehr Laufkundschaft.',
-			pages: '4 Seiten'
-		},
-		{
-			category: 'Dienstleistung',
-			title: 'Reinigung Cristal',
-			desc: 'Klare, übersichtliche Website mit Leistungspaket-Übersicht, Kundenstimmen und Kontaktformular.',
-			pages: '5 Seiten'
-		}
+		{ cat: 'Restaurant',    title: 'Trattoria Napoli',       desc: 'Elegante Website mit Speisekarte, Galerie und Online-Reservierungsformular.',   pages: '6 Seiten' },
+		{ cat: 'Handwerk',      title: 'Schreinerei Huber',      desc: 'Professioneller Auftritt mit Referenzgalerie, Leistungen und Anfrage-Formular.', pages: '5 Seiten' },
+		{ cat: 'Kosmetik',      title: 'Beauty Studio Lena',     desc: 'Elegante Website mit Behandlungsübersicht, Preisliste und Terminformular.',       pages: '4 Seiten' },
+		{ cat: 'Praxis',        title: 'Physiotherapie Weber',   desc: 'Vertrauensvoller Auftritt mit Leistungen, Team-Vorstellung und Kontakt.',         pages: '5 Seiten' },
+		{ cat: 'Bäckerei',      title: 'Bäckerei Berger',        desc: 'Herzliche Website mit Produktübersicht, Öffnungszeiten und Standort-Karte.',       pages: '4 Seiten' },
+		{ cat: 'Dienstleistung',title: 'Reinigung Cristal',      desc: 'Übersichtliche Website mit Leistungspaketen, Kundenstimmen und Kontaktformular.',  pages: '5 Seiten' }
 	];
 
 	const testimonials = [
-		{
-			name: 'Klaus Berger',
-			role: 'Bäckerei Berger, Zürich',
-			text: '„Seit wir unsere neue Website haben, melden sich viel mehr Kunden. Unkompliziert, schnell und das Ergebnis übertrifft unsere Erwartungen."'
-		},
-		{
-			name: 'Sandra Hoffmann',
-			role: 'Beauty Studio Lena, Bern',
-			text: '„Persönliche Betreuung von Anfang bis Ende. Wir hatten immer jemanden, der uns erklärt, was passiert. Klare Empfehlung!"'
-		},
-		{
-			name: 'Markus Huber',
-			role: 'Schreinerei Huber, Basel',
-			text: '„Professionell, pünktlich und preiswert. Die Website sieht genau so aus, wie ich es mir vorgestellt habe – ohne dass ich ein IT-Experte sein musste."'
-		}
+		{ name: 'Klaus Berger',    role: 'Bäckerei Berger, Zürich',      text: '„Seit wir unsere neue Website haben, melden sich viel mehr Kunden. Unkompliziert, schnell, und das Ergebnis übertrifft unsere Erwartungen."' },
+		{ name: 'Sandra Hoffmann', role: 'Beauty Studio Lena, Bern',     text: '„Persönliche Betreuung von Anfang bis Ende. Immer jemand erreichbar, der erklärt was passiert. Klare Empfehlung."' },
+		{ name: 'Markus Huber',    role: 'Schreinerei Huber, Basel',     text: '„Professionell, pünktlich und preiswert. Die Website sieht genau so aus, wie ich es mir vorgestellt habe."' }
 	];
 </script>
 
 <svelte:head>
-	<title>Referenzen – WebPro</title>
-	<meta name="description" content="Webseiten, die wir für Schweizer Unternehmen realisiert haben – Restaurants, Handwerker, Praxen und mehr." />
+	<title>Referenzen – Aura</title>
 </svelte:head>
 
 <div class="page-hero">
 	<div class="container">
-		<h1>Unsere Referenzen</h1>
-		<p>Einige Websites, die wir für Schweizer Unternehmen realisiert haben.</p>
+		<span class="eyebrow">Unsere Arbeiten</span>
+		<h1>Referenzen</h1>
+		<p>Websites, die wir für Schweizer Unternehmen realisiert haben.</p>
 	</div>
 </div>
 
-<!-- Projects grid -->
-<section class="section">
+<section class="section section-black">
 	<div class="container">
-		<div class="projects-grid">
+		<div class="proj-grid">
 			{#each projects as p, i}
-				<div class="project-card" use:reveal={{ delay: (i % 3) * 80 }}>
-					<div class="project-visual">
-						<div class="browser-bar">
-							<span class="dot"></span><span class="dot"></span><span class="dot"></span>
+				<div class="proj-card" use:reveal={{ delay: (i % 3) * 60 }}>
+					<div class="proj-mockup">
+						<div class="mock-bar">
+							<span></span><span></span><span></span>
 						</div>
-						<div class="project-screen">
-							<div class="screen-line long"></div>
-							<div class="screen-line medium"></div>
-							<div class="screen-block"></div>
-							<div class="screen-line short"></div>
-							<div class="screen-line medium"></div>
+						<div class="mock-screen">
+							<div class="mock-hero-line"></div>
+							<div class="mock-line long"></div>
+							<div class="mock-line medium"></div>
+							<div class="mock-btn"></div>
+							<div class="mock-line short"></div>
 						</div>
 					</div>
-					<div class="project-info">
-						<div class="project-meta">
-							<span class="project-cat">{p.category}</span>
-							<span class="project-pages">{p.pages}</span>
+					<div class="proj-info">
+						<div class="proj-meta">
+							<span class="proj-cat">{p.cat}</span>
+							<span class="proj-pages">{p.pages}</span>
 						</div>
 						<h3>{p.title}</h3>
 						<p>{p.desc}</p>
@@ -103,21 +60,28 @@
 	</div>
 </section>
 
-<!-- Testimonials -->
-<section class="section section-soft">
+<div class="img-strip">
+	<img
+		src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80&auto=format&fit=crop"
+		alt="Modernes Büro"
+		loading="lazy"
+	/>
+	<div class="img-strip-overlay"></div>
+</div>
+
+<section class="section section-dark">
 	<div class="container">
 		<div class="t-header" use:reveal>
-			<span class="section-badge">Kundenstimmen</span>
-			<h2 class="section-title">Was unsere Kunden sagen</h2>
+			<span class="eyebrow">Kundenstimmen</span>
+			<h2 class="display t-title">Was unsere Kunden sagen</h2>
 		</div>
 		<div class="t-grid">
 			{#each testimonials as t, i}
-				<div class="t-card" use:reveal={{ delay: i * 100 }}>
-					<div class="stars">★★★★★</div>
-					<p>{t.text}</p>
+				<div class="t-card" use:reveal={{ delay: i * 80 }}>
+					<p class="t-text">{t.text}</p>
 					<footer>
-						<strong>{t.name}</strong>
-						<span>{t.role}</span>
+						<span class="t-name">{t.name}</span>
+						<span class="t-role">{t.role}</span>
 					</footer>
 				</div>
 			{/each}
@@ -125,120 +89,78 @@
 	</div>
 </section>
 
-<!-- CTA -->
-<section class="cta-block">
-	<div class="container">
-		<h2>Ihr Unternehmen fehlt noch hier.</h2>
+<div class="cta-block">
+	<div class="container" use:reveal>
+		<span class="eyebrow">Nächstes Projekt</span>
+		<h2>Ihr Unternehmen<br /><em>fehlt noch hier.</em></h2>
 		<p>Lassen Sie uns gemeinsam etwas aufbauen, das Ihre Kunden begeistert.</p>
-		<a href="/kontakt" class="btn btn-green btn-lg">Projekt besprechen</a>
+		<div class="cta-actions">
+			<a href="/kontakt" class="btn-border">Projekt besprechen</a>
+		</div>
 	</div>
-</section>
+</div>
 
 <style>
 	/* Projects */
-	.projects-grid {
+	.proj-grid {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
-		gap: 1.5rem;
+		gap: 1px;
+		background: rgba(255,255,255,0.05);
+		border: 1px solid rgba(255,255,255,0.05);
 	}
-	.project-card {
-		border: 1px solid #e2e8f0;
-		border-radius: 16px;
-		overflow: hidden;
-		transition: transform 0.22s, box-shadow 0.22s;
+	.proj-card {
+		background: var(--black);
+		transition: background 0.3s;
+		display: flex;
+		flex-direction: column;
 	}
-	.project-card:hover { transform: translateY(-5px); box-shadow: 0 16px 48px rgba(0,0,0,0.09); }
+	.proj-card:hover { background: #0e0e14; }
 
 	/* Browser mockup */
-	.project-visual {
-		background: #f1f5f9;
-		padding: 1rem;
-		border-bottom: 1px solid #e2e8f0;
+	.proj-mockup {
+		background: #0e0e14;
+		padding: 1.25rem;
+		border-bottom: 1px solid rgba(255,255,255,0.05);
 	}
-	.browser-bar {
-		display: flex;
-		gap: 5px;
-		margin-bottom: 0.75rem;
-	}
-	.dot {
-		width: 8px;
-		height: 8px;
-		border-radius: 50%;
-		background: #cbd5e1;
-	}
-	.project-screen {
-		background: #fff;
-		border-radius: 6px;
+	.mock-bar { display: flex; gap: 5px; margin-bottom: 0.75rem; }
+	.mock-bar span { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.1); }
+	.mock-screen {
+		background: #06060a;
+		border: 1px solid rgba(255,255,255,0.07);
 		padding: 0.875rem;
-		display: flex;
-		flex-direction: column;
-		gap: 0.5rem;
-		min-height: 90px;
+		display: flex; flex-direction: column; gap: 0.5rem;
+		min-height: 80px;
 	}
-	.screen-line {
-		height: 7px;
-		background: #e2e8f0;
-		border-radius: 4px;
-	}
-	.screen-line.long { width: 80%; }
-	.screen-line.medium { width: 60%; }
-	.screen-line.short { width: 40%; }
-	.screen-block {
-		height: 28px;
-		width: 45%;
-		background: #d1fae5;
-		border-radius: 4px;
-	}
+	.mock-hero-line { height: 18px; background: rgba(201,169,110,0.15); border-radius: 2px; width: 70%; }
+	.mock-line { height: 6px; background: rgba(255,255,255,0.06); border-radius: 2px; }
+	.mock-line.long { width: 85%; }
+	.mock-line.medium { width: 60%; }
+	.mock-line.short { width: 40%; }
+	.mock-btn { height: 10px; width: 30%; background: rgba(201,169,110,0.2); border-radius: 2px; }
 
-	.project-info { padding: 1.375rem 1.5rem 1.625rem; }
-	.project-meta {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		margin-bottom: 0.75rem;
-	}
-	.project-cat {
-		font-size: 0.7rem;
-		font-weight: 700;
-		text-transform: uppercase;
-		letter-spacing: 0.08em;
-		color: #059669;
-	}
-	.project-pages {
-		font-size: 0.75rem;
-		color: #94a3b8;
-	}
-	.project-info h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
-	.project-info p { font-size: 0.865rem; color: #64748b; line-height: 1.65; }
+	.proj-info { padding: 1.5rem; flex: 1; }
+	.proj-meta { display: flex; justify-content: space-between; margin-bottom: 0.875rem; }
+	.proj-cat { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #c9a96e; }
+	.proj-pages { font-size: 0.72rem; color: rgba(255,255,255,0.45); }
+	.proj-info h3 { font-size: 1rem; font-weight: 500; color: rgba(255,255,255,0.9); margin-bottom: 0.5rem; }
+	.proj-info p { font-size: 0.83rem; color: rgba(195,212,228,0.82); line-height: 1.65; }
 
 	/* Testimonials */
-	.t-header { margin-bottom: 2.5rem; }
-	.t-grid {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 1.25rem;
-	}
-	.t-card {
-		background: #fff;
-		border: 1px solid #e2e8f0;
-		border-radius: 14px;
-		padding: 2rem;
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
-	}
-	.stars { color: #f59e0b; letter-spacing: 2px; font-size: 0.9rem; }
-	.t-card p { font-size: 0.9rem; color: #374151; line-height: 1.75; font-style: italic; flex: 1; }
-	.t-card footer { display: flex; flex-direction: column; gap: 0.2rem; }
-	.t-card strong { font-size: 0.875rem; }
-	.t-card span { font-size: 0.8rem; color: #94a3b8; }
+	.t-header { margin-bottom: 3rem; }
+	.t-title { font-size: clamp(2rem, 4vw, 3rem); color: #fff; margin-top: 0.25rem; }
+	.t-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.05); }
+	.t-card { background: var(--dark); padding: 2.5rem 2rem; display: flex; flex-direction: column; justify-content: space-between; gap: 2rem; }
+	.t-text { font-size: 0.9rem; color: rgba(195,212,228,0.82); line-height: 1.8; font-style: italic; }
+	.t-card footer { display: flex; flex-direction: column; gap: 0.3rem; }
+	.t-name { font-size: 0.85rem; font-weight: 500; color: rgba(255,255,255,0.85); }
+	.t-role { font-size: 0.75rem; color: rgba(255,255,255,0.5); }
 
 	@media (max-width: 900px) {
-		.projects-grid { grid-template-columns: repeat(2, 1fr); }
-		.t-grid { grid-template-columns: repeat(2, 1fr); }
+		.proj-grid { grid-template-columns: 1fr 1fr; }
+		.t-grid { grid-template-columns: 1fr; }
 	}
 	@media (max-width: 600px) {
-		.projects-grid { grid-template-columns: 1fr; }
-		.t-grid { grid-template-columns: 1fr; }
+		.proj-grid { grid-template-columns: 1fr; }
 	}
 </style>

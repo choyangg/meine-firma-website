@@ -2,109 +2,79 @@
 	import { reveal } from '$lib/actions.js';
 
 	const steps = [
-		{
-			num: '01',
-			title: 'Kostenloses Erstgespräch',
-			duration: 'ca. 30–60 Minuten',
-			desc: 'Wir lernen Ihr Unternehmen kennen. Sie erzählen uns, was Sie sich wünschen – und wir erklären Ihnen, was möglich ist. Kein Verkaufsgespräch, sondern echte Beratung. Kostenlos und unverbindlich.'
-		},
-		{
-			num: '02',
-			title: 'Offerte & Konzept',
-			duration: 'innerhalb von 3–5 Tagen',
-			desc: 'Sie erhalten von uns eine klare, schriftliche Offerte mit Festpreis. Keine versteckten Kosten, keine Stunden. Zusätzlich skizzieren wir erste Ideen für das Design und die Struktur Ihrer Website.'
-		},
-		{
-			num: '03',
-			title: 'Design & Entwicklung',
-			duration: '3–5 Wochen',
-			desc: 'Wir bauen Ihre Website. Sie erhalten regelmässige Updates und können jederzeit Feedback geben. Am Ende der Entwicklung zeigen wir Ihnen eine Vorschau – und passen noch an, was nicht passt.'
-		},
-		{
-			num: '04',
-			title: 'Launch & Übergabe',
-			duration: 'Fertig!',
-			desc: 'Ihre Website geht online. Wir richten alles ein, prüfen nochmals alle Details und erklären Ihnen, wie Sie kleine Änderungen selbst vornehmen können. Danach bleiben wir 3 Monate als Ansprechpartner erreichbar.'
-		}
+		{ num: '01', label: 'ca. 15 Min.',  title: 'Kostenloses Erstgespräch',
+		  desc: 'Wir lernen Ihr Unternehmen kennen. Sie erzählen uns, was Sie sich wünschen – wir erklären, was möglich ist. Kein Verkaufsgespräch, sondern echte Beratung.' },
+		{ num: '02', label: '3–5 Tage',         title: 'Offerte & Konzept',
+		  desc: 'Sie erhalten eine klare Offerte mit Festpreis. Keine versteckten Kosten. Zusätzlich skizzieren wir erste Ideen für Design und Struktur Ihrer Website.' },
+		{ num: '03', label: '3–5 Wochen',        title: 'Design & Entwicklung',
+		  desc: 'Wir bauen Ihre Website. Regelmässige Updates, Feedback-Runden, eine Vorschau vor dem Launch. Wir passen an, bis alles stimmt.' },
+		{ num: '04', label: 'Fertig!',            title: 'Launch & Übergabe',
+		  desc: 'Ihre Website geht online. Wir richten alles ein, prüfen jeden Detail, erklären Ihnen die Bedienung – und bleiben 3 Monate als Ansprechpartner erreichbar.' }
 	];
 
 	const faqs = [
-		{
-			q: 'Was brauche ich, um zu starten?',
-			a: 'Eigentlich nur eine Idee und Ihren Unternehmensname. Texte, Bilder und Inhalte erarbeiten wir gemeinsam mit Ihnen – Sie müssen kein Experte sein.'
-		},
-		{
-			q: 'Was kostet mich die Beratung?',
-			a: 'Das erste Gespräch ist komplett kostenlos und unverbindlich. Erst wenn Sie sich für uns entscheiden, beginnt das Projekt – und dann gilt der vereinbarte Festpreis.'
-		},
-		{
-			q: 'Kann ich die Website später selbst bearbeiten?',
-			a: 'Ja. Wir bauen Ihre Website so, dass Sie einfache Änderungen wie Texte oder Öffnungszeiten selbst anpassen können. Bei grösseren Änderungen stehen wir gerne zur Seite.'
-		},
-		{
-			q: 'Was passiert nach der Übergabe?',
-			a: 'Die ersten 3 Monate sind im Preis inbegriffen – für Fragen, kleine Anpassungen und technischen Support. Danach bieten wir optionale Wartungspakete an.'
-		},
-		{
-			q: 'Wie läuft die Zusammenarbeit ab?',
-			a: 'Per E-Mail, Telefon oder Video-Call – ganz wie Sie möchten. Wir passen uns Ihrem Alltag an. Kein Bürobesuch nötig, keine komplizierte Software.'
-		}
+		{ q: 'Was brauche ich, um zu starten?',
+		  a: 'Eigentlich nur eine Idee. Texte, Bilder und Inhalte erarbeiten wir gemeinsam – Sie müssen kein IT-Experte sein.' },
+		{ q: 'Kostet das Erstgespräch etwas?',
+		  a: 'Nein. Das erste Gespräch ist vollständig kostenlos und unverbindlich. Erst wenn Sie sich für uns entscheiden, beginnt das Projekt.' },
+		{ q: 'Kann ich die Website später selbst bearbeiten?',
+		  a: 'Ja. Wir bauen sie so, dass Sie einfache Änderungen wie Texte oder Öffnungszeiten selbst anpassen können. Bei grösseren Anpassungen stehen wir gerne zur Seite.' },
+		{ q: 'Was passiert nach der Übergabe?',
+		  a: 'Die ersten 3 Monate sind im Preis inbegriffen. Danach bieten wir optionale Wartungspakete an – oder Sie betreuen die Website selbst.' },
+		{ q: 'Wie läuft die Zusammenarbeit ab?',
+		  a: 'Per E-Mail, Telefon oder Video-Call – ganz wie Sie möchten. Kein Bürobesuch nötig, keine komplizierte Software.' }
 	];
 
-	let openFaq = $state(-1);
+	let open = $state(-1);
 </script>
 
 <svelte:head>
-	<title>Unser Ablauf – WebPro</title>
-	<meta name="description" content="So arbeiten wir: Vom ersten Gespräch bis zur fertigen Website in 4 einfachen Schritten." />
+	<title>Unser Ablauf – Aura</title>
 </svelte:head>
 
 <div class="page-hero">
 	<div class="container">
-		<h1>So arbeiten wir</h1>
+		<span class="eyebrow">Wie wir arbeiten</span>
+		<h1>Unser Ablauf</h1>
 		<p>Klar, transparent und ohne Überraschungen – von Anfang bis Ende.</p>
 	</div>
 </div>
 
-<!-- Steps -->
-<section class="section">
-	<div class="container">
-		<div class="steps">
-			{#each steps as step, i}
-				<div class="step" use:reveal={{ delay: i * 80 }}>
-					<div class="step-left">
-						<div class="step-num">{step.num}</div>
-						{#if i < steps.length - 1}
-							<div class="step-line"></div>
-						{/if}
-					</div>
-					<div class="step-body">
-						<div class="step-meta">{step.duration}</div>
-						<h2>{step.title}</h2>
-						<p>{step.desc}</p>
-					</div>
+<section class="section section-black">
+	<div class="container steps-wrap">
+		{#each steps as s, i}
+			<div class="step" use:reveal={{ delay: i * 60 }}>
+				<div class="step-aside">
+					<div class="step-circle">{s.num}</div>
+					{#if i < steps.length - 1}
+						<div class="step-connector"></div>
+					{/if}
 				</div>
-			{/each}
-		</div>
+				<div class="step-body">
+					<span class="step-label">{s.label}</span>
+					<h2 class="step-title display">{s.title}</h2>
+					<p>{s.desc}</p>
+				</div>
+			</div>
+		{/each}
 	</div>
 </section>
 
-<!-- FAQ -->
-<section class="section section-soft">
-	<div class="container faq-container">
+<section class="section section-dark">
+	<div class="container faq-wrap">
 		<div use:reveal>
-			<span class="section-badge">Häufige Fragen</span>
-			<h2 class="section-title">Ihre Fragen, unsere Antworten</h2>
+			<span class="eyebrow">FAQ</span>
+			<h2 class="display faq-title">Häufige Fragen</h2>
 		</div>
-		<div class="faq-list" use:reveal={{ delay: 80 }}>
-			{#each faqs as faq, i}
-				<div class="faq-item" class:open={openFaq === i}>
-					<button onclick={() => openFaq = openFaq === i ? -1 : i}>
-						<span>{faq.q}</span>
-						<span class="faq-icon">{openFaq === i ? '−' : '+'}</span>
+		<div class="faq-list" use:reveal={{ delay: 100 }}>
+			{#each faqs as f, i}
+				<div class="faq-item" class:open={open === i}>
+					<button onclick={() => open = open === i ? -1 : i}>
+						<span>{f.q}</span>
+						<span class="faq-icon">{open === i ? '−' : '+'}</span>
 					</button>
-					{#if openFaq === i}
-						<div class="faq-answer"><p>{faq.a}</p></div>
+					{#if open === i}
+						<p class="faq-ans">{f.a}</p>
 					{/if}
 				</div>
 			{/each}
@@ -112,104 +82,75 @@
 	</div>
 </section>
 
-<!-- CTA -->
-<section class="cta-block">
-	<div class="container">
-		<h2>Bereit für den ersten Schritt?</h2>
-		<p>Das Erstgespräch ist kostenlos – ohne jede Verpflichtung.</p>
-		<a href="/kontakt" class="btn btn-green btn-lg">Jetzt Termin vereinbaren</a>
+<div class="cta-block">
+	<div class="container" use:reveal>
+		<span class="eyebrow">Erster Schritt</span>
+		<h2>Bereit für das<br /><em>erste Gespräch?</em></h2>
+		<p>Kostenlos, unverbindlich, 15 Minuten.</p>
+		<div class="cta-actions">
+			<a href="/kontakt" class="btn-border">Termin anfragen</a>
+		</div>
 	</div>
-</section>
+</div>
 
 <style>
-	/* Steps */
-	.steps { display: flex; flex-direction: column; gap: 0; max-width: 760px; margin: 0 auto; }
+	.steps-wrap { max-width: 700px; margin: 0 auto; }
 	.step { display: flex; gap: 2.5rem; }
-	.step-left {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		flex-shrink: 0;
-	}
-	.step-num {
-		width: 52px;
-		height: 52px;
-		background: #0c0c0e;
-		color: #fff;
+	.step-aside { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+	.step-circle {
+		width: 56px; height: 56px;
+		border: 2px solid rgba(201,169,110,0.7);
+		color: #d4aa6e;
 		border-radius: 50%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-size: 0.8rem;
-		font-weight: 800;
+		display: flex; align-items: center; justify-content: center;
+		font-family: 'Playfair Display', Georgia, serif;
+		font-size: 1rem; font-weight: 600;
 		letter-spacing: 0.04em;
 		flex-shrink: 0;
+		background: rgba(201,169,110,0.06);
 	}
-	.step-line {
-		width: 1px;
-		flex: 1;
-		background: #e2e8f0;
+	.step-connector {
+		width: 1px; flex: 1;
+		background: rgba(255,255,255,0.2);
 		margin: 0.75rem 0;
-		min-height: 3rem;
+		min-height: 2rem;
 	}
-	.step-body {
-		padding-bottom: 3.5rem;
-		padding-top: 0.75rem;
-	}
-	.step-meta {
-		font-size: 0.78rem;
+	.step-body { padding-bottom: 4rem; padding-top: 0.5rem; }
+	.step-label {
+		font-size: 0.62rem;
 		font-weight: 600;
+		letter-spacing: 0.2em;
 		text-transform: uppercase;
-		letter-spacing: 0.08em;
-		color: #059669;
-		margin-bottom: 0.625rem;
+		color: #c9a96e;
+		display: block;
+		margin-bottom: 0.75rem;
 	}
-	.step-body h2 {
-		font-size: 1.4rem;
-		font-weight: 800;
-		letter-spacing: -0.02em;
-		margin-bottom: 0.875rem;
-	}
-	.step-body p { font-size: 0.95rem; color: #64748b; line-height: 1.75; max-width: 560px; }
+	.step-title { font-size: 1.6rem; font-weight: 700; color: #ffffff; margin-bottom: 1rem; letter-spacing: -0.01em; }
+	.step-body p { font-size: 0.92rem; color: rgba(195,210,225,0.82); line-height: 1.9; }
 
-	/* FAQ */
-	.faq-container { max-width: 700px; margin: 0 auto; }
-	.faq-container .section-title { margin-bottom: 2.5rem; }
-	.faq-list { display: flex; flex-direction: column; border: 1px solid #e2e8f0; border-radius: 14px; overflow: hidden; }
-	.faq-item { border-bottom: 1px solid #e2e8f0; }
-	.faq-item:last-child { border-bottom: none; }
+	.faq-wrap { max-width: 660px; margin: 0 auto; }
+	.faq-title { font-size: clamp(2rem, 4vw, 2.75rem); color: #fff; margin: 0.25rem 0 2.5rem; }
+	.faq-list { display: flex; flex-direction: column; }
+	.faq-item { border-bottom: 1px solid rgba(255,255,255,0.06); }
+	.faq-item:first-child { border-top: 1px solid rgba(255,255,255,0.06); }
 	.faq-item button {
 		width: 100%;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		padding: 1.25rem 1.5rem;
-		background: none;
-		border: none;
-		cursor: pointer;
+		padding: 1.5rem 0;
+		background: none; border: none; cursor: pointer;
 		text-align: left;
-		font-size: 0.95rem;
-		font-weight: 600;
-		color: #111827;
+		font-size: 0.9rem; font-weight: 400;
+		color: rgba(255,255,255,0.65);
 		gap: 1rem;
-		transition: background 0.15s;
+		transition: color 0.2s;
 	}
-	.faq-item button:hover { background: #f8fafc; }
-	.faq-item.open button { background: #f8fafc; color: #059669; }
-	.faq-icon {
-		font-size: 1.25rem;
-		color: #94a3b8;
-		flex-shrink: 0;
-		line-height: 1;
-	}
-	.faq-answer {
-		padding: 0 1.5rem 1.25rem;
-		background: #f8fafc;
-	}
-	.faq-answer p { font-size: 0.9rem; color: #475569; line-height: 1.75; }
-
-	@media (max-width: 600px) {
-		.step { gap: 1.5rem; }
-		.step-body { padding-bottom: 2.5rem; }
+	.faq-item.open button, .faq-item button:hover { color: #fff; }
+	.faq-icon { color: #c9a96e; font-size: 1.1rem; flex-shrink: 0; }
+	.faq-ans {
+		font-size: 0.875rem; color: rgba(195,210,225,0.78);
+		line-height: 1.8;
+		padding-bottom: 1.5rem;
 	}
 </style>
